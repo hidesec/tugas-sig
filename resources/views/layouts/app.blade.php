@@ -6,6 +6,7 @@
     <title>@yield('title')</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
     <style>
         body {
             margin: 0;
@@ -60,7 +61,23 @@
       <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
       <script src="https://unpkg.com/leaflet-ajax/dist/leaflet.ajax.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ asset('js/geojson/sumatera_utara.js') }}"></script>
+      <script src="{{ asset('js/geojson/sumatera_utara.js') }}"></script>
+      <script src="{{ asset('js/geojson/all_kabkota_ind.js') }}"></script>
+      <script src="{{ asset('js/geojson/all_prov_ind.js') }}"></script>
+      <footer class="bg-dark text-white text-center py-3">
+          <div class="container">
+              <p class="mb-0">
+                  &copy; <span id="year"></span> Hidesec. Dibuat dengan
+                  <i class="bi bi-cup-hot-fill text-warning"></i>
+                  &
+                  <i class="bi bi-heart-fill text-danger"></i>
+                  .
+              </p>
+          </div>
+      </footer>
+      <script>
+          document.getElementById('year').textContent = new Date().getFullYear();
+      </script>
     @stack('scripts')
 </body>
 </html>

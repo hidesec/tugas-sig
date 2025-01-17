@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Responsive Map with Leaflet')
+@section('title', 'Populasi Sumatera Utara')
 
 @section('content')
 <div id="map"></div>
@@ -48,8 +48,8 @@
 
     // method that we will use to update the control based on feature properties passed
     info.update = function (props) {
-        this._div.innerHTML = '<h4>Sumatera Utara Population</h4>' +  (props ?
-            '<b>' + props.alt_name + '</b><br />' + props.population + ' people<sup>2</sup>'
+        this._div.innerHTML = '<h4>Populasi Sumatera Utara</h4>' +  (props ?
+            '<b>' + props.alt_name + '</b><br />' + props.population + ' orang'
             : 'Hover over a state');
     };
 
