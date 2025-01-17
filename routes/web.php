@@ -4,7 +4,25 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('peta');
+    return view('population');
+});
+Route::get('/populasi', function () {
+    return view('population');
+});
+Route::get('/luas', function () {
+    return view('luas');
+});
+Route::get('/gdp', function () {
+    return view('gdp');
+});
+Route::get('/kepadatan-penduduk', function () {
+    return view('kepadatan_penduduk');
+});
+Route::get('/kabkot', function () {
+    return view('kabkot');
+});
+Route::get('/provinsi', function () {
+    return view('provinsi');
 });
 
 Route::get('/dashboard', function () {

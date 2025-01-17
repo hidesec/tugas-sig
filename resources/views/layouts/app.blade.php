@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
     <style>
         body {
             margin: 0;
@@ -26,20 +27,29 @@
             color: #000;
         }
         .legend {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            background: white;
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            line-height: 18px;
+            color: #555;
         }
         .legend i {
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             float: left;
             margin-right: 8px;
             opacity: 0.7;
+        }
+
+        .info {
+            padding: 6px 8px;
+            /*font: 14px/16px Arial, Helvetica, sans-serif;*/
+            background: white;
+            background: rgba(255,255,255,0.8);
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            border-radius: 5px;
+        }
+
+        .info h4 {
+            margin: 0 0 5px;
+            color: #777;
         }
     </style>
     @stack('styles')
@@ -47,39 +57,27 @@
 <body>
     @include('partials.navbar')
     @yield('content')
-    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Leaflet JS -->
+      <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+      <script src="https://unpkg.com/leaflet-ajax/dist/leaflet.ajax.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="{{ asset('js/geojson/sumatera_utara.js') }}"></script>
+      <script src="{{ asset('js/geojson/all_kabkota_ind.js') }}"></script>
+      <script src="{{ asset('js/geojson/all_prov_ind.js') }}"></script>
+      <footer class="bg-dark text-white text-center py-3">
+          <div class="container">
+              <p class="mb-0">
+                  &copy; <span id="year"></span> Hidesec. Dibuat dengan
+                  <i class="bi bi-cup-hot-fill text-warning"></i>
+                  &
+                  <i class="bi bi-heart-fill text-danger"></i>
+                  .
+              </p>
+          </div>
+      </footer>
+      <script>
+          document.getElementById('year').textContent = new Date().getFullYear();
+      </script>
     @stack('scripts')
 </body>
-</html><nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">SIG SulSel</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Peta tematik
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Kepadatan Penduduk</a></li>
-                        <li><a class="dropdown-item" href="#">Jumlah SMA</a></li>
-                        <li><a class="dropdown-item" href="#">Populasi</a></li>
-                        <li><a class="dropdown-item" href="#">Persentase Pengangguran</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Kabupaten/Kota</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Kecamatan</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Admin</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+</html>
