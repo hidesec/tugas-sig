@@ -4,7 +4,10 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('peta');
+    return view('population');
+});
+Route::get('/population', function () {
+    return view('population');
 });
 
 Route::get('/dashboard', function () {
