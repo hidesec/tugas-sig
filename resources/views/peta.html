@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title')</title>
+    <title>Responsive Map with Leaflet</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
     <style>
@@ -42,16 +42,9 @@
             opacity: 0.7;
         }
     </style>
-    @stack('styles')
 </head>
 <body>
-    @include('partials.navbar')
-    @yield('content')
-    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    @stack('scripts')
-</body>
-</html><nav class="navbar navbar-expand-lg navbar-dark">
+<nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">SIG SulSel</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -83,3 +76,35 @@
         </div>
     </div>
 </nav>
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Initialize the map
+    const map = L.map('map').setView([-3.6688, 119.9741], 7); // Centered at South Sulawesi
+
+    // Add OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Legend
+    const legend = L.control({ position: 'bottomright' });
+
+    legend.onAdd = function (map) {
+        const div = L.DomUtil.create('div', 'legend');
+        div.innerHTML += '<i style="background: #ffffcc"></i><span>0-10</span><br>';
+        div.innerHTML += '<i style="background: #ffeda0"></i><span>10-20</span><br>';
+        div.innerHTML += '<i style="background: #feb24c"></i><span>20-50</span><br>';
+        div.innerHTML += '<i style="background: #fd8d3c"></i><span>50-100</span><br>';
+        div.innerHTML += '<i style="background: #f03b20"></i><span>100-500</span><br>';
+        div.innerHTML += '<i style="background: #bd0026"></i><span>500-1000+</span><br>';
+        return div;
+    };
+
+    legend.addTo(map);
+</script>
+</body>
+</html>
